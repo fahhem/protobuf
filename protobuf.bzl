@@ -400,3 +400,9 @@ def internal_protobuf_py_tests(
         srcs=[s],
         main=s,
         **kargs)
+
+
+def check_version():
+  expected = apple_common.dotted_version("0.5.4")
+  if apple_common.dotted_version(native.bazel_version).compare_to(expected):
+    fail("Bazel must be newer than 0.5.4")
